@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+int main() {
+	char str[16] = { 0 };
+	scanf("%s", str);
+	int sum = 0;
+	for (int i = 0; i < strlen(str); i++) {
+		//A~O
+		if ((int)str[i] < 'P'){
+			sum += ((str[i] - 'A')/3)+3;
+		}
+		//TUV
+		else if ((str[i] > 'S')&&(str[i] < 'W')) {
+			sum += 9;
+		}
+		//PQRS, WXYZ, OPERATOR, etc
+		else {
+			//PQRS
+			if (str[i] < 'T') {
+				sum += 8;
+				//sum += ((str[i] - 'P') / 4) + 1;
+			}
+			//WXYZ, operator, etc
+			else{
+				sum += 10;
+				//sum += ((str[i] - 'W') / 4) + 1;
+			}
+		}
+	}
+	printf("%d", sum);
+	return 0;
+}
